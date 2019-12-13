@@ -1,2 +1,47 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<section class="admin-products-index">
+
+  <header class="page-header">
+    <h1>Admin &raquo; Dashboard</h1>
+  </header>
+
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product Count</th>
+          <th colspan="2">Category Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2"> <%= @products_count %> </td>
+          <td colspan="2"> <%= @categories_count %> </td>
+        </tr>
+      </tbody>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Category Name</th>
+          <th colspan="2">Product Number</th>
+          <th colspan="2">Total Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+        <tr>
+          <td colspan="2"> <%= category[:name] %> </td>
+          <td colspan="2"> <%= category[:count] %> </td>
+          <td colspan="2"> <%= category[:total] %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+      </tfoot>
+    </table>
+  </div>
+
+</section>
