@@ -20,16 +20,16 @@
       </p>
     <% end %>
 
+    <% if false %>
     <% upcoming_sale = get_upcoming_sale %>
-    <% if upcoming_sale %>
-      <p class="alert alert-warning">
-        An upcoming <strong><%= upcoming_sale.name %></strong> will start on            
-        <strong> <%= upcoming_sale.starts_on %>, 
-        everything will be <%= upcoming_sale.percent_off %>% off!</strong> 
-      </p>
+      <% if upcoming_sale %>
+        <p class="alert alert-warning">
+          An upcoming <strong><%= upcoming_sale.name %></strong> will start on            
+          <strong> <%= upcoming_sale.starts_on %>, 
+          everything will be <%= upcoming_sale.percent_off %>% off!</strong> 
+        </p>
+      <% end %>
     <% end %>
-
-
 
     <%= yield %>
   </main>

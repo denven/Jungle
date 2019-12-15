@@ -6,7 +6,7 @@ class Sale < ActiveRecord::Base
   def self.get_active_sale
     where("sales.starts_on <= ? AND sales.ends_on >= ?", Date.current, Date.current).first
   end
-
+  
   scope :get_upcoming_sales, -> { where("sales.starts_on > ?", Date.current) }
 
   def isUpcoming?
