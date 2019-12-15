@@ -1,0 +1,48 @@
+<section class="orders-show">
+
+  <header class="page-header">
+    <h1><%= current_user.first_name %>'s history orders: </h1>
+  </header>
+
+  <% if (get_my_orders.count == 0) %>
+    <div class="alert alert-success container" role="alert" style="width: 800px;">
+      <h4 class="alert-heading">Dear <%= current_user.first_name %>:</h4>
+      <p style="padding-left:40px;">Your don't have any orders from Jungle, please feel free to browse our products and make an order. </p>
+      <hr>
+      <%= link_to 'Home Page', root_path, :class => "button btn btn-primary btn-block" %>
+    </div>    
+  <% end %>
+
+  <% get_my_orders.each do |order|  %>
+    <div class="panel panel-default items">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>    
+          </tr>
+        </thead>
+        <tbody>
+          <% order.line_items.each do |item| %>
+            <%= render 'orders/item', product: item.product, quantity: item.quantity %>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th> Order ID: #<%= order.id %></th>
+            <th  colspan="1"> Created At: <%= order.created_at %></th>
+            <th colspan="2">
+              TOTAL:
+            </th>
+            <th>
+              <%= humanized_money_with_symbol order.total_cents / 100.0 %>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  <% end %>
+
+</section>
