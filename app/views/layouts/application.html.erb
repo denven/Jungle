@@ -11,6 +11,26 @@
   <%= render 'layouts/top_nav' %>
 
   <main class="container">
+
+    <% on_sale = get_active_sale %>
+    <% if on_sale %>
+      <p class="alert alert-info">
+        There is an active <%= on_sale.name %> going on!
+        <strong> Everything is <%= on_sale.percent_off %>% off! </strong>
+      </p>
+    <% end %>
+
+    <% upcoming_sale = get_upcoming_sale %>
+    <% if upcoming_sale %>
+      <p class="alert alert-warning">
+        An upcoming <strong><%= upcoming_sale.name %></strong> will start on            
+        <strong> <%= upcoming_sale.starts_on %>, 
+        everything will be <%= upcoming_sale.percent_off %>% off!</strong> 
+      </p>
+    <% end %>
+
+
+
     <%= yield %>
   </main>
 
