@@ -34,6 +34,11 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
     end
 
+    it "validates: minimum password length 3 digits" do
+      subject.password = "12"
+      expect(subject).to_not be_valid
+    end
+
   end
 
   describe '.authenticate_with_credentials' do
