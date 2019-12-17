@@ -9,5 +9,6 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates :quantity, presence: true
   validates :category, presence: true
+  validates_presence_of :name, :price, :quantity, :category
 
 end
