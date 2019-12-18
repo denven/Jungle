@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
 
-  user = User.create(first_name: "Hans", last_name: "Ng", email: "test@test.com", password: "123", password_confirmation: "123")
+  User.create(first_name: "Hans", last_name: "Ng", email: "test@test.com", password: "12345", password_confirmation: "12345")
+  user = User.find_by_email("test@test.com");  # This is needed because we don't require database cleaner right now
 
   describe 'Validations' do
     # validation examples here
-    subject { described_class.new(first_name: "Hans", last_name: "Ng", email: "123@test.com", password: "123", password_confirmation: "123") }
+    subject { described_class.new(first_name: "Hans", last_name: "Ng", email: "123@test.com", password: "12345", password_confirmation: "12345") }
 
     it "validates: user" do
       expect(subject).to be_valid
@@ -43,7 +44,21 @@ RSpec.describe User, type: :model do
 
   describe '.authenticate_with_credentials' do
     # examples for this class method here
-  end
+    it "validates: authentication by email and password" do
+      cur_user = User.authenticate_with_credentials("test@test.com", "12345")
+      expect(cur_user).to eq(user)
+    end
 
+    it "validates: authentication by email with space and password" do
+      cur_user = User.authenticate_with_credentials("test@test.com ", "12345")
+      expect(cur_user).to eq(user)
+    end
+
+    it "validates: authentication of insensitive email and password" do
+      cur_user = User.authenticate_with_credentials("tEst@test.COm", "12345")
+      expect(cur_user).to eq(user)
+    end
+
+  end
 
 end
