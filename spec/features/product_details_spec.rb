@@ -19,7 +19,7 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
   
     end
 
-  scenario "They see all products" do
+  scenario "They see all products in detail" do
     # ACT
     # visit '/categories/1'
     # save_screenshot
