@@ -1,6 +1,6 @@
 <tr>
   <% products = Product.where(category_id: category.id) %>
-  <td rowspan = <%= products.length %> >  <%= category.name %>  </td>
+  <td rowspan = <%= products.length == 0 ? 1 : products.length %> >  <%= category.name %>  </td>
   
   <ul class="dropdown-menu">
   <% Category.all.each do |category| %>
