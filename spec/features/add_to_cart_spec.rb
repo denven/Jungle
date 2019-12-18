@@ -18,7 +18,7 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
 
   end
 
-  scenario "They see all products", focus: true do
+  scenario "My Cart has 1 item when user Added one product to chart" do
     # ACT
     visit root_path
     expect(page).to have_text 'My Cart (0)', count: 1
